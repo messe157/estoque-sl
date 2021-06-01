@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-sm-6">
+  <table class="table table-user-information">
+    <tbody>
+      <tr>
+        <th class="text-right">Numero de Protocolo</th>
+        <td>{{ object }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<tr>
+<div class="d-print-none">
+<span class="pull-right"style="padding-right: 5px; margin-top: 10px; display: block;">
+  <a href="{% url 'estoque:dar_baixa' object.pk %}">
+    <button type="button" class="btn btn-primary">
+      <span class="fa fa-plus"></span> Dar baixa no estoque
+    </button>
+  </a>
+</span>
+</tr>
+
+<tbody>
+  <tr>
+    
+
+
+  <span class="pull-right"style="padding-right: 5px; margin-top: 10px; display: block;">
+<a title='Imprimir conteúdo' href='javascript:window.print()'>
+  <button type="button" class="btn btn-success">Imprimir</button>
+  </a>
+</span>
+</div>
+</tr></tbody>
+<table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th>Produto</th>
+      <th>Fornecedor</th>
+      <th>Quantidade</th>
+      <th>Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for obj in object.protocolo_entrega.all %}
+    <tr>
+      <td>{{ obj.produto }}</td>
+      <td>{{ obj.fornecedor }}</td>
+      <td>{{ obj.quantidade }}</td>
+      <td>{{ object.created }}</td>
+    </tr>
+
+  
+    {% endfor %}
+    
+  </tbody>
+</table>
+<div class="d-none d-print-block">
+<!-- Elemento Assinatura -->
+<div class="card text-center">
+  <div class="card-header">
+    Termo de Responsabilidade
+  </div>
+  <div class="card-body">
+    <!--<h5 class="card-title">Título especial</h5> -->
+    <p class="card-text">DECLARO TER RECEBIDO DA EMPRESA RODRIGUES & SARMENTO LTDA (SERTÃO LINK) A QUANTIA E OS MATERIAIS MENCIONADOS NA RELAÇÃO ACIMA.  
+    </p>
+    
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-text">ASSINATURA DO ENTREGADOR</h6>
+            <p class="card-text">_______________________________________________________</p>
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-text">ASSINATURA DO RECEBEDOR</h6>
+            <p class="card-text">_______________________________________________________</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+style="padding-right: 5px; margin-top: 10px; display: block;">

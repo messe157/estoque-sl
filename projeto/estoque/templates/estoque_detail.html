@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if object.movimento == 'e' %}
+  <a href="{% url 'estoque:estoque_entrada_list' %}">Voltar</a>
+{% else %}
+  <a href="{% url 'estoque:estoque_saida_list' %}">Voltar</a>
+{% endif %}
+
+{% if object.movimento == 'e' %}
+  <h1>Entrada: {{ object }}</h1>
+{% else %}
+  <h1>Saída: {{ object }}</h1>
+{% endif %}
+
+<div class="col-sm-6">
+  <table class="table table-user-information">
+    <tbody>
+      <tr>
+        <th class="text-left">NF</th>
+        <td>{{ object.nf_formated }}</td>
+      </tr>
+      <tr>
+        <th class="text-left">Data</th>
+        <td>{{ object.created }}</td>
+      </tr>
+      <tr>
+        <th class="text-left">Observações</th>
+        <td>{{ object.obs }}</td>
+      </tr>
+      <tr>
+        <th class="text-left">Funcionário</th>
+        <td>{{ object.funcionario.first_name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Preço</th>
+      <th>Fornecedor</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for obj in object.estoques.all %}
+      <tr>
+        <td>{{ obj.produto }}</td>
+        <td>{{ obj.quantidade }}</td>
+        <td>{{ obj.preco_pro }}</td>
+        <td>{{ obj.fornecedor }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}

@@ -1,0 +1,1 @@
+$('#id_verificado').removeClass('form-control');

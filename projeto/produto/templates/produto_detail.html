@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="{% url 'produto:produto_list' %}">Voltar</a>
+
+<h1>{{ object }}
+  <span class="pull-right">
+    <a href="{% url 'produto:produto_edit' object.pk %}">
+      <button type="button" class="btn btn-success">
+        <span class="fa fa-pencil"></span> Editar
+      </button>
+    </a>
+  </span>
+</h1>
+
+<div class="col-sm-6">
+  <table class="table table-user-information">
+    <tbody>
+      <tr>
+        <th class="text-center">Verificado</th>
+        <td>
+          {% if object.verificado %}
+            <i class="fa fa-check-circle ok"></i>
+          {% else %}
+            <i class="fa fa-minus-circle no"></i>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th class="text-center">Codigo</th>
+        <td>{{ object.ncm }}</td>
+      </tr>
+      <tr>
+        <th class="text-center">Preço</th>
+        <td>R$ {{ object.preco }}</td>
+      </tr>
+      <tr>
+        <th class="text-center">Estoque</th>
+        <td>{{ object.estoque }}</td>
+      </tr>
+      <tr>
+        <th class="text-center">Estoque mínimo</th>
+        <td>{{ object.estoque_minimo }}</td>
+      </tr>
+      <tr>
+        <th class="text-center">Unidade de Medida</th>
+        <td>{{ object.medida }}</td>
+      </tr>
+      <tr>
+        <tr>
+          <th class="text-center">Categoria</th>
+          <td>{{ object.categoria }}</td>
+        </tr>
+        <th class="text-center">Fornecedor</th>
+        <td>{{ object.fornecedor }}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}
